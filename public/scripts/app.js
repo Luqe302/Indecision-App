@@ -2,10 +2,10 @@
 
 console.log('App.js is running!');
 
-// JSX - JavaScript XML
 var app = {
-    race: 'Dog',
-    name: 'Billy'
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
 };
 
 var template = React.createElement(
@@ -14,20 +14,26 @@ var template = React.createElement(
     React.createElement(
         'h1',
         null,
-        app.race
+        app.title
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        app.subtitle
     ),
     React.createElement(
-        'h2',
+        'p',
         null,
-        app.name
+        app.options.length > 0 ? 'Here are your options ' + app.options : 'No options'
     )
 );
 
 var user = {
-    name: 'Lukasz',
-    age: 25
-
+    name: 'Lukasz Grzasko',
+    age: 19,
+    location: 'Bryhors'
 };
+
 function getLocation(location) {
     if (location) {
         return React.createElement(
@@ -41,15 +47,20 @@ function getLocation(location) {
     }
 }
 
+var getFirstName = function getFirstName(name) {
+    return user.name.split(' ')[0];
+};
+console.log(getFirstName(user.name));
+
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         'p',
         null,
         'Age: ',
@@ -57,6 +68,19 @@ var templateTwo = React.createElement(
     ),
     getLocation(user.location)
 );
+
+var multiplier = {
+    numbers: [10, 20, 30],
+    multiplyBy: 3,
+    multiply: function multiply() {
+        var _this = this;
+
+        return this.numbers.map(function (e) {
+            return e * _this.multiplyBy;
+        });
+    }
+};
+console.log(multiplier.multiply());
 
 var appRoot = document.getElementById('app');
 
