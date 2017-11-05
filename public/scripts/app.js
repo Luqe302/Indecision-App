@@ -24,63 +24,45 @@ var template = React.createElement(
     React.createElement(
         'p',
         null,
-        app.options.length > 0 ? 'Here are your options ' + app.options : 'No options'
+        app.options.length > 0 ? 'Here are your options: ' + app.options : 'No options'
     )
 );
 
-var user = {
-    name: 'Lukasz Grzasko',
-    age: 19,
-    location: 'Bryhors'
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
 };
-
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    } else {
-        return undefined;
-    }
-}
-
-var getFirstName = function getFirstName(name) {
-    return user.name.split(' ')[0];
+var minusOne = function minusOne() {
+    console.log('minusOne');
 };
-console.log(getFirstName(user.name));
-
+var reset = function reset() {
+    console.log('reset');
+};
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name ? user.name : 'Anonymous'
+        'Count: ',
+        count
     ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        '+1'
     ),
-    getLocation(user.location)
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'reset'
+    )
 );
-
-var multiplier = {
-    numbers: [10, 20, 30],
-    multiplyBy: 3,
-    multiply: function multiply() {
-        var _this = this;
-
-        return this.numbers.map(function (e) {
-            return e * _this.multiplyBy;
-        });
-    }
-};
-console.log(multiplier.multiply());
 
 var appRoot = document.getElementById('app');
 
